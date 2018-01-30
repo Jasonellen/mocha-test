@@ -9,12 +9,14 @@ let fetch = request('http://scnc.mdslife.com/api/v1')
 describe("api", () => {
   it('get api test:', function (done) {
     fetch.get('/messages/get_message')
+      .query({n: 100}) //添加字符串参数
       // .expect('Content-Type', /html/)
       // .expect(200,done)
       
       //或者自定义报错信息
       .expect(200)
       .end(function (err, res) {
+        console.log(res,'==========')
         if(err){
           assert.fail(res.statusCode, 200, '----接口报错-----')
         }
